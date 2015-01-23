@@ -33,3 +33,19 @@ Notes
 
 Features are normalized and bounded within [-1,1].
 Each feature vector is a row on the text file. For more information about this dataset contact: activityrecognition@smartlab.ws
+
+## variables and summaries##
+train_x: X_train.txt
+train_y: Y_train.txt
+subject_train: subject_train.txt
+test_x: X_test.txt
+test_y: Y_test.txt
+subject_test: subject_test.txt
+subject_train: subject_train.txt 
+activity_lable: activity_labels.txt
+features: features.txt
+mergedata: merged dataset includes train_x and test_x
+allsubject: merged dataset includes all subjects information
+allydata: merged dataset includes activity information and activity lable
+tidy: tidy dataset
+
