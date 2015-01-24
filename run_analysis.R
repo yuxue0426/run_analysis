@@ -13,8 +13,9 @@ mergedata<-rbind(train_x,test_x)
 # add features to be colnames
 colnames(mergedata)<-c(as.character(features[,2]))
 # calculate mean and sd
-meanx<-sapply(mergedata,mean)
-stdx<-sapply(mergedata,sd)
+mean_cols_x <- grep("mean()", colnames(mergedata), fixed=TRUE)
+std_cols_x <- grep("std()", colnames(mergedata), fixed=TRUE)
+mean_std_x <- merged_data_x[,c(mean_cols_x,std_cols_x)]
 # label the data set with descriptive variable names
 colnames(mergedata)<-c(as.character(features[,2]))
 # Uses descriptive activity names to name the activities in the data set
@@ -28,8 +29,9 @@ for(i in 1:10299){
 	if(allydata[i]==5){allydata[i]<-"STANDING"}
 	if(allydata[i]==6){allydata[i]<-"LAYING"}	
 }
+all_activity<-cbind(allydata,mean_std_x)
 allsubject<-rbind(subject_train,subject_test)
-mergedata$activity<-allydata
+mergedata$activity<-all_activity
 bigdata<-cbind(mergedata,allsubject$V1)
 # create an independent tidy data set with the average of each variable for each activity and each subject
 tidy<-aggregate(bigdata,by=list(bigdata[,562],bigdata[,563]),FUN=mean)
