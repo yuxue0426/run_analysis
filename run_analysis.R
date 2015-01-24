@@ -31,10 +31,8 @@ for(i in 1:10299){
 }
 all_activity<-cbind(allydata,mean_std_x)
 allsubject<-rbind(subject_train,subject_test)
-mergedata$activity<-all_activity
-bigdata<-cbind(mergedata,allsubject$V1)
+bigdata<-cbind(mergedata,allsubject)
+bigdata<-cbind(bigdata,all_activity$allydata)
 # create an independent tidy data set with the average of each variable for each activity and each subject
-tidy<-aggregate(bigdata,by=list(bigdata[,562],bigdata[,563]),FUN=mean)
-# save to a new file
+tidy<-aggregate(bigdata,by=list(bigdata[,563],bigdata[,562]),FUN=mean)
 write.table(Tidy, file = "tidydata.txt", row.name=FALSE)
-
