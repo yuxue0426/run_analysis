@@ -29,10 +29,13 @@ for(i in 1:10299){
 	if(allydata[i]==5){allydata[i]<-"STANDING"}
 	if(allydata[i]==6){allydata[i]<-"LAYING"}	
 }
-all_activity<-cbind(allydata,mean_std_x)
 allsubject<-rbind(subject_train,subject_test)
-bigdata<-cbind(mergedata,allsubject)
-bigdata<-cbind(bigdata,all_activity$allydata)
+colnames(allsubject)<-"subject"
+bigdata1<-cbind(mean_std_x,subject=allsubject)
+bigdata<-cbind(bigdata1,activity=allydata)
 # create an independent tidy data set with the average of each variable for each activity and each subject
-tidy<-aggregate(bigdata,by=list(bigdata[,563],bigdata[,562]),FUN=mean)
-write.table(Tidy, file = "tidydata.txt", row.name=FALSE)
+tidy<-aggregate(bigdata,by=list(bigdata$activity,bigdata$subject),FUN=mean)
+tidydata<-tidy[,1:68]
+colnames(tidydata)[1]<-"Activity"
+colnames(tidydata)[2]<-"Subject"
+write.table(tidydata, file = "TidyData.txt", row.name=FALSE)
