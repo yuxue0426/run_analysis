@@ -15,7 +15,7 @@ colnames(mergedata)<-c(as.character(features[,2]))
 # calculate mean and sd
 mean_cols_x <- grep("mean()", colnames(mergedata), fixed=TRUE)
 std_cols_x <- grep("std()", colnames(mergedata), fixed=TRUE)
-mean_std_x <- merged_data_x[,c(mean_cols_x,std_cols_x)]
+mean_std_x <- mergedata[,c(mean_cols_x,std_cols_x)]
 # label the data set with descriptive variable names
 colnames(mergedata)<-c(as.character(features[,2]))
 # Uses descriptive activity names to name the activities in the data set
